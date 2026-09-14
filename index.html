@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ads Department — Account Performance Review, 15 September 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0E3B3E;
+    --teal-deep:#082A2C;
+    --teal-tint:#E9F1F0;
+    --ink:#1B2627;
+    --muted:#5C6C6D;
+    --line:#D6E0DF;
+    --good:#1F7A5C;
+    --bad:#C2452A;
+    --bad-tint:#FBEDE8;
+    --good-tint:#E6F3EE;
+    --serif:"Fraunces", Georgia, "Times New Roman", serif;
+    --sans:"Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  :focus-visible{outline:3px solid #7FB8B0;outline-offset:3px}
+
+  /* ---------- Top bar ---------- */
+  .bar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .bar-in{max-width:1120px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .bar .brand{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--teal);text-decoration:none}
+  .bar nav{display:flex;gap:4px;flex-wrap:wrap}
+  .bar nav a{font-size:14px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:999px}
+  .bar nav a:hover{background:var(--teal-tint);color:var(--teal)}
+  .bar nav a.good{color:var(--good)}
+  .bar nav a.bad{color:var(--bad)}
+
+  /* ---------- Cover ---------- */
+  .cover{background:var(--teal);color:#fff;position:relative;overflow:hidden}
+  .cover-in{max-width:1120px;margin:0 auto;padding:112px 32px 96px;position:relative}
+  .cover .dept{font-size:15px;letter-spacing:.02em;color:#A9C9C5;margin:0 0 20px}
+  .cover h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,7vw,84px);line-height:1;letter-spacing:-.02em;margin:0 0 28px;max-width:14ch;font-variation-settings:"opsz" 144}
+  .cover .lede{font-size:clamp(18px,2.2vw,23px);line-height:1.4;max-width:34em;color:#DCE9E7;margin:0 0 48px}
+  .cover .meta{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:15px;color:#A9C9C5}
+  .cover .meta span+span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#3F6F6B;margin:0 14px 2px 0}
+  .cover .meta span:first-child::before{display:none}
+  .cover .glyph{position:absolute;right:-40px;bottom:-140px;width:520px;height:520px;opacity:.16;pointer-events:none}
+
+  /* ---------- Agenda ---------- */
+  .agenda{max-width:1120px;margin:0 auto;padding:64px 32px 24px}
+  .agenda h2{font-family:var(--serif);font-weight:500;font-size:28px;margin:0 0 20px;letter-spacing:-.01em}
+  .agenda ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .agenda li{display:flex}
+  .agenda li a{flex:1;display:flex;flex-direction:column;gap:6px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;text-decoration:none;min-height:120px}
+  .agenda li a:hover{border-color:var(--teal);background:var(--teal-tint)}
+  .agenda .tag{font-size:13px;font-weight:600}
+  .agenda .tag.good{color:var(--good)} .agenda .tag.bad{color:var(--bad)} .agenda .tag.neutral{color:var(--muted)}
+  .agenda .name{font-family:var(--serif);font-size:21px;line-height:1.2;font-weight:500}
+  .agenda .sub{font-size:14px;color:var(--muted);margin-top:auto}
+
+  /* ---------- Account sections ---------- */
+  section.account{max-width:1120px;margin:0 auto;padding:72px 32px 24px;border-top:1px solid var(--line)}
+  section.account:first-of-type{border-top:0}
+  .head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:36px}
+  .head .kicker{font-size:15px;color:var(--muted);margin:0 0 8px}
+  .head h2{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4vw,46px);line-height:1.05;letter-spacing:-.015em;margin:0}
+  .head .where{font-size:16px;color:var(--muted);margin:10px 0 0}
+  .status{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;font-weight:600;font-size:15px;white-space:nowrap}
+  .status::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor}
+  .status.good{background:var(--good-tint);color:var(--good)}
+  .status.bad{background:var(--bad-tint);color:var(--bad)}
+
+  /* metric strip */
+  .platforms{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:12px}
+  .platforms.two{grid-template-columns:3fr 2fr}
+  .platform{background:var(--teal-tint);border-radius:14px;padding:22px 26px 20px}
+  .platform .pname{font-size:14px;font-weight:600;color:var(--teal);margin:0 0 16px}
+  .metrics{display:grid;gap:14px 20px;margin:0;padding:0}
+  .metrics.c5{grid-template-columns:repeat(5,auto)}
+  .metrics.c3{grid-template-columns:repeat(3,auto)}
+  .metrics.c7{grid-template-columns:repeat(7,auto)}
+  .metric{display:flex;flex-direction:column;gap:2px}
+  .metric dt{order:2;font-size:13.5px;color:var(--muted)}
+  .metric dd{order:1;margin:0;font-family:var(--serif);font-size:30px;font-weight:500;line-height:1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .metric.hero dd{color:var(--good)}
+  .metric.warn dd{color:var(--bad)}
+  .platform .foot{margin:18px 0 0;font-size:14.5px;color:var(--muted);line-height:1.45}
+  .platform .foot b{color:var(--ink);font-weight:600}
+
+  /* sparkline */
+  .spark{display:flex;align-items:flex-end;gap:6px;height:44px;margin:34px 0 4px}
+  .spark div{width:26px;background:var(--teal);border-radius:3px 3px 0 0;position:relative}
+  .spark div span{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .spark-cap{font-size:13.5px;color:var(--muted);margin:0}
+
+  /* verdict */
+  .verdict{margin:8px 0 0}
+  .verdict h3{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:-.01em;margin:36px 0 14px}
+  .why{list-style:none;margin:0;padding:0;max-width:72ch}
+  .why li{position:relative;padding:12px 0 12px 30px;border-top:1px solid var(--line);font-size:17.5px;line-height:1.5}
+  .why li:last-child{border-bottom:1px solid var(--line)}
+  .why li::before{content:"";position:absolute;left:4px;top:22px;width:10px;height:10px;border-radius:50%;background:var(--good)}
+  .why.plain li::before{display:none}
+  .why.plain li{padding-left:0}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px}
+  .split .col h3{font-family:var(--serif);font-weight:500;font-size:24px;margin:0 0 14px;letter-spacing:-.01em}
+  .split .wrong li::before{background:var(--bad)}
+  .split .doing{background:var(--teal);color:#fff;border-radius:14px;padding:26px 28px}
+  .split .doing h3{color:#fff}
+  .split .doing .why li{border-color:rgba(255,255,255,.18);color:#E8F0EF}
+  .split .doing .why li::before{background:#7FD3B8}
+  .split .doing .target{margin:18px 0 0;padding:14px 16px;background:rgba(255,255,255,.08);border-radius:10px;font-size:16px;color:#fff}
+  .split .doing .target b{font-weight:600}
+
+  .cpa-compare{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:center;margin:22px 0 0;max-width:640px;font-size:15px}
+  .cpa-compare .lab{color:var(--muted)}
+  .cpa-compare .track{height:26px;border-radius:6px;background:var(--bad);display:flex;align-items:center;padding:0 10px;color:#fff;font-weight:600;font-variant-numeric:tabular-nums}
+  .cpa-compare .track.small{background:var(--good);width:5%;min-width:64px}
+
+  .camp{margin:22px 0 0;font-size:15px;color:var(--muted)}
+  .camp table{border-collapse:collapse;margin-top:8px;font-size:15px;color:var(--ink)}
+  .camp th,.camp td{text-align:left;padding:7px 28px 7px 0;border-bottom:1px solid var(--line);font-weight:400}
+  .camp th{color:var(--muted);font-weight:500;font-size:13.5px}
+  .camp td.num{font-variant-numeric:tabular-nums}
+  .camp td.zero{color:var(--bad);font-weight:600}
+
+  /* ---------- Efficiency ---------- */
+  section.team{background:var(--teal-tint);margin-top:72px}
+  .team-in{max-width:1120px;margin:0 auto;padding:80px 32px}
+  .team-in h2{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4vw,46px);line-height:1.05;letter-spacing:-.015em;margin:0 0 12px;max-width:20ch}
+  .team-in .intro{max-width:60ch;color:var(--muted);font-size:18px;margin:0 0 40px}
+  .moves{display:grid;grid-template-columns:1fr 1fr;gap:20px;list-style:none;margin:0;padding:0}
+  .moves li{background:#fff;border-radius:14px;padding:26px 28px}
+  .moves h3{font-family:var(--serif);font-weight:500;font-size:24px;margin:0 0 10px;letter-spacing:-.01em}
+  .moves p{margin:0;color:var(--ink);font-size:16.5px;line-height:1.55}
+  .moves svg{width:28px;height:28px;color:var(--teal);margin-bottom:14px;display:block}
+
+  /* ---------- Footer ---------- */
+  footer{max-width:1120px;margin:0 auto;padding:40px 32px 56px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 28px}
+
+  @media (max-width:860px){
+    .bar-in{padding:12px 20px}
+    .bar nav{display:none}
+    .cover-in{padding:72px 20px 64px}
+    .cover .glyph{width:340px;right:-120px;bottom:-120px}
+    .agenda,section.account,.team-in,footer{padding-left:20px;padding-right:20px}
+    .head{grid-template-columns:1fr;align-items:start}
+    .platforms.two{grid-template-columns:1fr}
+    .metrics.c5,.metrics.c3,.metrics.c7{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+    .split,.moves{grid-template-columns:1fr}
+    .agenda ol{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+    .cpa-compare{grid-template-columns:1fr}
+  }
+  @media print{
+    .bar{position:static;backdrop-filter:none}
+    section.account{break-before:page;padding-top:40px}
+    .cover{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="#top">Ads Department review</a>
+    <nav aria-label="Sections">
+      <a class="good" href="#wow-smiles">WOW! Smiles</a>
+      <a class="good" href="#orthodental">OrthoDental</a>
+      <a class="bad" href="#holt">Holt Orthodontics</a>
+      <a class="bad" href="#renton">Dentistry at Renton</a>
+      <a href="#team">Team efficiency</a>
+    </nav>
+  </div>
+</header>
+
+<section class="cover" id="top">
+  <svg class="glyph" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="48" fill="none" stroke="#fff" stroke-width=".6"/>
+    <circle cx="50" cy="50" r="36" fill="none" stroke="#fff" stroke-width=".6"/>
+    <circle cx="50" cy="50" r="24" fill="none" stroke="#fff" stroke-width=".6"/>
+    <circle cx="50" cy="50" r="12" fill="none" stroke="#fff" stroke-width=".6"/>
+    <path d="M50 2v96M2 50h96" stroke="#fff" stroke-width=".4"/>
+  </svg>
+  <div class="cover-in">
+    <p class="dept">Ads Department</p>
+    <h1>Account Performance Review</h1>
+    <p class="lede">Two best-performing accounts, two underperforming accounts, and how the team is becoming more efficient.</p>
+    <div class="meta">
+      <span>Company-wide meeting</span>
+      <span>15 September 2026</span>
+      <span>Google Ads &amp; Meta, last 30 days (12 Aug – 11 Sep)</span>
+    </div>
+  </div>
+</section>
+
+<div class="agenda">
+  <h2>Four accounts, one team update</h2>
+  <ol>
+    <li><a href="#wow-smiles"><span class="tag good">Top performer</span><span class="name">WOW! Smiles</span><span class="sub">9 locations, Google Ads and Meta</span></a></li>
+    <li><a href="#orthodental"><span class="tag good">Top performer</span><span class="name">OrthoDental Inc.</span><span class="sub">Gallup, NM, Google Ads</span></a></li>
+    <li><a href="#holt"><span class="tag bad">Needs action</span><span class="name">Holt Orthodontics</span><span class="sub">5 locations, Google Ads and Meta</span></a></li>
+    <li><a href="#renton"><span class="tag bad">Needs action</span><span class="name">Dentistry at Renton</span><span class="sub">Single location, Google Ads</span></a></li>
+    <li><a href="#team"><span class="tag neutral">Team</span><span class="name">Becoming more efficient</span><span class="sub">Four changes already under way</span></a></li>
+  </ol>
+</div>
+
+<!-- ================= WOW! Smiles ================= -->
+<section class="account" id="wow-smiles">
+  <div class="head">
+    <div>
+      <p class="kicker">Best performer #1</p>
+      <h2>WOW! Smiles</h2>
+      <p class="where">9 locations, running Google Ads and Meta</p>
+    </div>
+    <span class="status good">Top performer</span>
+  </div>
+
+  <div class="platforms two">
+    <div class="platform">
+      <p class="pname">Google Ads</p>
+      <dl class="metrics c5">
+        <div class="metric"><dd>$19,108</dd><dt>spend</dt></div>
+        <div class="metric"><dd>2,937</dd><dt>clicks</dt></div>
+        <div class="metric"><dd>$6.51</dd><dt>CPC</dt></div>
+        <div class="metric"><dd>277</dd><dt>conversions</dt></div>
+        <div class="metric hero"><dd>$69</dd><dt>CPA</dt></div>
+      </dl>
+      <div class="spark" aria-label="Weekly conversions: 39, 52, 67, 67">
+        <div style="height:58%"><span>39</span></div>
+        <div style="height:78%"><span>52</span></div>
+        <div style="height:100%"><span>67</span></div>
+        <div style="height:100%"><span>67</span></div>
+      </div>
+      <p class="spark-cap">Weekly conversions through August</p>
+      <p class="foot"><b>Impression share 44%</b> and a <b>9.4% conversion rate</b>.</p>
+    </div>
+    <div class="platform">
+      <p class="pname">Meta</p>
+      <dl class="metrics c3">
+        <div class="metric"><dd>$12,204</dd><dt>spend</dt></div>
+        <div class="metric"><dd>125</dd><dt>leads</dt></div>
+        <div class="metric hero"><dd>$98</dd><dt>cost per lead</dt></div>
+      </dl>
+      <p class="foot"><b>Reach 130K</b> with <b>4,223 link clicks</b>.</p>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <h3>Why it is a top performer</h3>
+    <ul class="why">
+      <li>Largest account in the portfolio and still improving: Google conversions climbed every week through August as new location campaigns went live.</li>
+      <li>Full-funnel coverage across all 9 locations. Search, Performance Max and Meta lead forms run in parallel, with brand search launched per location since late July.</li>
+      <li>Delivering 400+ leads and calls a month at a sustainable blended cost across both platforms.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= OrthoDental ================= -->
+<section class="account" id="orthodental">
+  <div class="head">
+    <div>
+      <p class="kicker">Best performer #2</p>
+      <h2>OrthoDental Inc.</h2>
+      <p class="where">Gallup, NM. Single location, Google Ads only</p>
+    </div>
+    <span class="status good">Top performer</span>
+  </div>
+
+  <div class="platforms">
+    <div class="platform">
+      <p class="pname">Google Ads</p>
+      <dl class="metrics c7">
+        <div class="metric"><dd>$1,057</dd><dt>spend</dt></div>
+        <div class="metric"><dd>125</dd><dt>clicks</dt></div>
+        <div class="metric"><dd>10.9%</dd><dt>CTR</dt></div>
+        <div class="metric"><dd>$8.45</dd><dt>CPC</dt></div>
+        <div class="metric"><dd>48</dd><dt>conversions</dt></div>
+        <div class="metric hero"><dd>38%</dd><dt>conversion rate</dt></div>
+        <div class="metric hero"><dd>$22</dd><dt>CPA</dt></div>
+      </dl>
+      <p class="foot"><b>Impression share 49%.</b> Three campaigns: two search, one brand.</p>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <h3>Why it is a top performer</h3>
+    <ul class="why">
+      <li>Lowest cost per conversion of the accounts reviewed, on a small budget of roughly $35 a day.</li>
+      <li>A landing page test done properly: the new landing-page campaign cut CPA from $53 to $35 on the same click cost, so the old campaign was paused and its budget moved across.</li>
+      <li>Nearly 4 in 10 clicks turn into a call or a form.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= Holt ================= -->
+<section class="account" id="holt">
+  <div class="head">
+    <div>
+      <p class="kicker">Underperformer #1</p>
+      <h2>Holt Orthodontics</h2>
+      <p class="where">5 locations, running Google Ads and Meta</p>
+    </div>
+    <span class="status bad">Needs action</span>
+  </div>
+
+  <div class="platforms two">
+    <div class="platform">
+      <p class="pname">Google Ads</p>
+      <dl class="metrics c5">
+        <div class="metric"><dd>$7,777</dd><dt>spend</dt></div>
+        <div class="metric"><dd>360</dd><dt>clicks</dt></div>
+        <div class="metric warn"><dd>$21.60</dd><dt>CPC</dt></div>
+        <div class="metric"><dd>34</dd><dt>conversions</dt></div>
+        <div class="metric warn"><dd>$227</dd><dt>CPA</dt></div>
+      </dl>
+      <p class="foot"><b>Impression share 32%</b>, with <b>37% of impressions lost to ad rank</b>.</p>
+    </div>
+    <div class="platform">
+      <p class="pname">Meta</p>
+      <dl class="metrics c3">
+        <div class="metric"><dd>$1,471</dd><dt>spend</dt></div>
+        <div class="metric"><dd>153</dd><dt>leads</dt></div>
+        <div class="metric hero"><dd>$9.62</dd><dt>cost per lead</dt></div>
+      </dl>
+      <p class="foot">Meta is working. Google is the problem.</p>
+    </div>
+  </div>
+
+  <div class="cpa-compare" aria-label="Cost per lead comparison">
+    <span class="lab">Google cost per conversion</span><div class="track" style="width:100%">$227</div>
+    <span class="lab">Meta cost per lead</span><div class="track small">$9.62</div>
+  </div>
+
+  <div class="split">
+    <div class="col">
+      <h3>What is wrong</h3>
+      <ul class="why wrong">
+        <li>Second-highest Google spend in the portfolio for 34 conversions.</li>
+        <li>Highest CPC we have at $21.60, yet ads still show below competitors.</li>
+        <li>Granite Bay: $1,246 for 2 conversions. Sacramento: $2,487 for 9.</li>
+      </ul>
+    </div>
+    <div class="col doing">
+      <h3>What we are doing</h3>
+      <ul class="why">
+        <li>Pause Granite Bay. Cut Sacramento budget 50% pending a search-term and Quality Score audit.</li>
+        <li>Roll the winning GHL landing page from the Roseville test to all locations.</li>
+        <li>Shift part of the saved Google budget to Meta, where leads cost $10, not $227.</li>
+      </ul>
+      <p class="target"><b>Target:</b> Google CPA under $150 within 30 days.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Renton ================= -->
+<section class="account" id="renton">
+  <div class="head">
+    <div>
+      <p class="kicker">Underperformer #2</p>
+      <h2>Dentistry at Renton</h2>
+      <p class="where">Single location, Google Ads only</p>
+    </div>
+    <span class="status bad">Needs action</span>
+  </div>
+
+  <div class="platforms">
+    <div class="platform">
+      <p class="pname">Google Ads</p>
+      <dl class="metrics c7">
+        <div class="metric"><dd>$1,836</dd><dt>spend</dt></div>
+        <div class="metric"><dd>523</dd><dt>clicks</dt></div>
+        <div class="metric"><dd>$3.51</dd><dt>CPC</dt></div>
+        <div class="metric"><dd>5</dd><dt>conversions</dt></div>
+        <div class="metric warn"><dd>1.0%</dd><dt>conversion rate</dt></div>
+        <div class="metric warn"><dd>$367</dd><dt>CPA</dt></div>
+        <div class="metric warn"><dd>58%</dd><dt>lost to ad rank</dt></div>
+      </dl>
+      <div class="camp">
+        Three campaigns
+        <table>
+          <thead><tr><th>Campaign</th><th>Spend</th><th>Conversions</th></tr></thead>
+          <tbody>
+            <tr><td>New Patient Search</td><td class="num">$1,208</td><td class="num">3</td></tr>
+            <tr><td>Performance Max</td><td class="num">$294</td><td class="num">2</td></tr>
+            <tr><td>Emergency Search</td><td class="num">$334</td><td class="num zero">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="col">
+      <h3>What is wrong</h3>
+      <ul class="why wrong">
+        <li>Worst ad rank of any account reviewed. Most eligible impressions never show.</li>
+        <li>Cheap clicks that do not convert: 1 in 100.</li>
+        <li>An Emergency campaign built in 2022 is still live and has produced nothing.</li>
+      </ul>
+    </div>
+    <div class="col doing">
+      <h3>What we are doing</h3>
+      <ul class="why">
+        <li>Pause Emergency and Performance Max immediately.</li>
+        <li>Rebuild New Patient as a tight search campaign with a dedicated landing page.</li>
+        <li>Fix ad rank (ad relevance, landing page) before adding any budget.</li>
+      </ul>
+      <p class="target"><b>Target:</b> CPA under $100 within 30 days of relaunch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Team ================= -->
+<section class="team" id="team">
+  <div class="team-in">
+    <h2>What the Ads team is doing to become more efficient</h2>
+    <p class="intro">Four changes, all aimed at catching problems early and giving managers time to optimise rather than just maintain.</p>
+    <ul class="moves">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>
+        <h3>Ad Manager guidelines</h3>
+        <p>A written standard for account setup, conversion tracking, naming and budget changes, so the mistakes and loopholes found in this review are covered and cannot recur.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <h3>Rolling checks</h3>
+        <p>Scheduled audits on every account so problems like a zero-conversion campaign or broken tracking are caught in days, not months.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg>
+        <h3>Monday boards</h3>
+        <p>Every account, task and owner visible in one place. Actions agreed on a call are tracked to completion, and workload across managers is transparent.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M18 8v6M15 11h6"/></svg>
+        <h3>New team member</h3>
+        <p>Added to spread the workload, so managers have time to optimise accounts rather than just maintain them.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span>Ads Department review</span>
+  <span>15 September 2026</span>
+  <span>Last 30 days, 12 Aug – 11 Sep 2026</span>
+  <span>Sources: Google Ads and Meta Ads Manager</span>
+</footer>
+
+</body>
+</html>
